@@ -376,7 +376,7 @@ def generate_expert_specialization_figure() -> None:
     draw_preservation_ablation(fig, grid[2, :])
 
     category_handles = [
-        Patch(facecolor="#111111", label="BioAgent"),
+        Patch(facecolor="#111111", label="scACORN"),
         Patch(facecolor="#729A70", label="Specialized"),
         Patch(facecolor="#4C8BB8", label="Open-source"),
         Patch(facecolor="#CC7430", label="Closed-source"),

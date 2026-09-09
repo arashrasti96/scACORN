@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def find_repo_root(start: Path | None = None) -> Path:
-    """Walk upward until the standalone BioAgent repository root is found."""
+    """Walk upward until the standalone scACORN repository root is found."""
     current = (start or Path(__file__)).resolve()
     if current.is_file():
         current = current.parent
@@ -14,7 +14,7 @@ def find_repo_root(start: Path | None = None) -> Path:
     for candidate in (current, *current.parents):
         if (candidate / "ace" / "Agent.py").exists() and (candidate / "stage3_ace_orchestrator").exists():
             return candidate
-    raise FileNotFoundError("Could not locate the BioAgent repository root from the stage-3 package")
+    raise FileNotFoundError("Could not locate the scACORN repository root from the stage-3 package")
 
 
 def load_repo_dotenv(start: Path | None = None, *, override: bool = False) -> Path | None:

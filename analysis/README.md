@@ -1,6 +1,6 @@
 # Paper analysis
 
-This directory contains the metric aggregation, figure generation, and panel export scripts used for the BioAgent paper. Generated tables, figures, and embedding artifacts are intentionally ignored by Git.
+This directory contains the metric aggregation, figure generation, and panel export scripts used for the scACORN paper. Generated tables, figures, and embedding artifacts are intentionally ignored by Git.
 
 The scripts expect outputs from the public training and evaluation entry points in the repository:
 

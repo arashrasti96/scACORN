@@ -1,8 +1,8 @@
-# BioAgent
+# scACORN
 
 Code for **Agentic Context Engineering with Specialized Small Language Models for Single-Cell Reasoning**.
 
-BioAgent builds reusable single-cell experts in three stages:
+scACORN builds reusable single-cell experts in three stages:
 
 1. **Domain alignment** adapts a Cell2Sentence backbone with contrastive LoRA training.
 2. **Expert specialization** trains task adapters while regularizing embedding geometry against the stage-1 expert.

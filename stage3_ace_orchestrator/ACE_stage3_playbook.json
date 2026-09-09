@@ -1,0 +1,20 @@
+{
+  "bullets": {
+    "b1": {
+      "id": "b1",
+      "section": "expert_routing",
+      "content": "Per-profile executable routing + single-call + one-reroute validation: For each profile_id independently, call exactly one expert once as the primary expert. If the sample metadata or candidate_experts list a tissue/organ, choose the metadata/tissue-matched expert first; only select a different domain expert as primary when the top ~3–5 ranked genes uniquely and strongly implicate another tissue. Construct the expert payload with these fields: question (verbatim), ordered_genes (full ranked list for that profile_id), task_type='cell_type', candidate_labels, and profile_id; include grounded_context only when top markers uniquely implicate another tissue. Immediately validate the expert response: require supporting_genes non-empty and subset_of(profile.ordered_genes); require predicted_tissue to be consistent with both the top markers and sample metadata; require negative_markers to be present (either reported or drawn from provided negatives). If validation fails, reroute once to an alternative expert (prefer pan-tissue/neutral or metadata-matching if not used), record that second expert in expert_models_used, and re-validate. If the reroute also fails validation, set abstain=true for that profile. Synthesize the per-profile outputs only from the validated expert output (do not combine evidence across experts or profiles), ensure expert_models_used lists the called expert(s) exactly in order, and set predicted_tissue to the validated expert's reported tissue. For post-reroute disagreement, prefer the expert whose validated supporting_genes best match the profile's top 3–5 genes; if still unresolved, return a single low-confidence label grounded only in the validated evidence or abstain if evidence is contradictory or very weak.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-01T23:31:58.672899+00:00",
+      "updated_at": "2026-06-01T23:42:46.163944+00:00"
+    }
+  },
+  "sections": {
+    "expert_routing": [
+      "b1"
+    ]
+  },
+  "next_id": 0
+}

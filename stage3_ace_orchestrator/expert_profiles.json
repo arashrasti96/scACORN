@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "description": "Explicit per-expert routing profiles for the stage-3 ACE orchestrator.",
+  "experts": {
+    "tabula_sapiens_bladder_cell_annotation": {
+      "specialization": "Bladder tissue expert for ranked-gene cell annotation and tissue-of-origin questions in urothelial, stromal, and bladder-associated immune contexts.",
+      "preferred_queries": [
+        "bladder tissue-of-origin inference",
+        "urothelial versus stromal versus immune interpretation in bladder samples",
+        "bladder-specific differential diagnosis and supporting-gene justification"
+      ],
+      "routing_hints": [
+        "Prefer when the query mentions bladder, urothelium, transitional epithelium, or urinary tract context",
+        "Useful when epithelial keratins or bladder-associated stromal programs dominate but the answer still needs grounded immune/stromal context"
+      ],
+      "strengths": [
+        "bladder tissue discrimination",
+        "structured supporting-gene selection",
+        "mixed epithelial, stromal, and immune bladder context"
+      ],
+      "limitations": [
+        "not the first choice for clearly non-bladder tissues",
+        "open-world questions outside single-cell expression grounding"
+      ]
+    },
+    "tabula_sapiens_ear_cell_annotation": {
+      "specialization": "Ear tissue expert for ranked-gene cell annotation and tissue-of-origin questions in auditory or ear-derived epithelial, stromal, vascular, and immune contexts.",
+      "preferred_queries": [
+        "ear tissue-of-origin inference",
+        "ear-derived cell annotation",
+        "disambiguating ear samples from other epithelial or stromal tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the question mentions ear or auditory tissue context",
+        "Useful when the profile looks tissue-specific but is not well explained by digestive, glandular, or urinary experts"
+      ],
+      "strengths": [
+        "ear tissue context",
+        "tissue-specific annotation under hidden-origin tasks",
+        "structured final-label and supporting-gene outputs"
+      ],
+      "limitations": [
+        "less appropriate for digestive organ queries",
+        "not a substitute for literature search on rare external biology questions"
+      ]
+    },
+    "tabula_sapiens_eye_cell_annotation": {
+      "specialization": "Eye tissue expert for ranked-gene cell annotation and tissue-of-origin questions in ocular epithelial, stromal, vascular, and immune environments.",
+      "preferred_queries": [
+        "eye tissue-of-origin inference",
+        "ocular cell annotation",
+        "distinguishing eye-derived profiles from other epithelial tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the query suggests ocular or vision-related tissue context",
+        "Useful when barrier or epithelial programs are present but bladder, trachea, or salivary interpretations remain uncertain"
+      ],
+      "strengths": [
+        "eye tissue specialization",
+        "tissue routing under ambiguity",
+        "JSON-compatible grounded outputs"
+      ],
+      "limitations": [
+        "not ideal for endocrine or digestive organ questions",
+        "not tuned for generic free-form literature synthesis"
+      ]
+    },
+    "tabula_sapiens_heart_cell_annotation": {
+      "specialization": "Heart tissue expert for ranked-gene cardiac cell annotation and tissue-of-origin questions involving contractile, vascular, stromal, and resident immune programs.",
+      "preferred_queries": [
+        "heart tissue-of-origin inference",
+        "cardiac stromal or contractile cell annotation",
+        "disambiguating vascular or muscle-like programs against non-cardiac tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the profile suggests cardiomyocyte, vascular, fibroblast, or contractile programs in a heart-like tissue context",
+        "Useful when smooth-muscle or stromal signatures could otherwise be confused with bladder or trachea"
+      ],
+      "strengths": [
+        "cardiac tissue context",
+        "contractile and vascular interpretation",
+        "supporting-gene grounding"
+      ],
+      "limitations": [
+        "less appropriate for digestive mucosal tissues",
+        "not tuned for cross-domain general QA beyond single-cell inference"
+      ]
+    },
+    "tabula_sapiens_ovary_cell_annotation": {
+      "specialization": "Ovary tissue expert for ranked-gene annotation and tissue-of-origin questions in ovarian epithelial, stromal, vascular, and immune microenvironments.",
+      "preferred_queries": [
+        "ovary tissue-of-origin inference",
+        "ovarian stromal or epithelial annotation",
+        "differential diagnosis among reproductive-tissue interpretations"
+      ],
+      "routing_hints": [
+        "Prefer when reproductive tissue context is plausible or explicitly mentioned",
+        "Useful when stromal or epithelial programs need to be separated from salivary, pancreas, or bladder interpretations"
+      ],
+      "strengths": [
+        "ovarian tissue context",
+        "reproductive-tissue routing",
+        "structured output adherence"
+      ],
+      "limitations": [
+        "not the first choice for gut or airway questions",
+        "not intended for nongrounded general biomedical QA"
+      ]
+    },
+    "tabula_sapiens_pancreas_cell_annotation": {
+      "specialization": "Pancreas tissue expert for ranked-gene annotation and tissue-of-origin questions involving pancreatic epithelial, endocrine-adjacent, stromal, and immune programs.",
+      "preferred_queries": [
+        "pancreas tissue-of-origin inference",
+        "pancreatic epithelial or stromal annotation",
+        "distinguishing glandular digestive tissue from stomach, small intestine, or salivary gland"
+      ],
+      "routing_hints": [
+        "Prefer when glandular digestive tissue is likely and pancreas is one of the plausible origins",
+        "Useful when exocrine-like, ductal, or secretory programs need to be separated from other glandular tissues"
+      ],
+      "strengths": [
+        "pancreatic tissue routing",
+        "glandular context disambiguation",
+        "supporting-gene justification"
+      ],
+      "limitations": [
+        "can overlap with other glandular tissues under weak evidence",
+        "not designed for literature-heavy open-ended reasoning"
+      ]
+    },
+    "tabula_sapiens_prostate_cell_annotation": {
+      "specialization": "Prostate tissue expert for ranked-gene annotation and tissue-of-origin questions in prostate epithelial, stromal, vascular, and immune contexts.",
+      "preferred_queries": [
+        "prostate tissue-of-origin inference",
+        "prostate epithelial versus stromal annotation",
+        "male reproductive tissue differential diagnosis"
+      ],
+      "routing_hints": [
+        "Prefer when the question suggests prostate or male reproductive tissue context",
+        "Useful when epithelial programs could be mistaken for bladder or glandular tissues but the surrounding context points to prostate"
+      ],
+      "strengths": [
+        "prostate tissue specialization",
+        "male reproductive context",
+        "structured single-cell answer fields"
+      ],
+      "limitations": [
+        "not ideal for clearly nonglandular tissues",
+        "not intended for broad domain-general QA"
+      ]
+    },
+    "tabula_sapiens_salivary_gland_cell_annotation": {
+      "specialization": "Salivary gland expert for ranked-gene annotation and tissue-of-origin questions involving secretory epithelial, stromal, ductal, vascular, and immune salivary contexts.",
+      "preferred_queries": [
+        "salivary gland tissue-of-origin inference",
+        "secretory or ductal glandular annotation",
+        "distinguishing salivary gland from pancreas or other glandular tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the profile suggests secretory or ductal glandular identity outside the digestive tract",
+        "Useful when glandular programs are present but pancreas and salivary gland remain competing explanations"
+      ],
+      "strengths": [
+        "salivary gland context",
+        "secretory epithelial interpretation",
+        "glandular tissue routing"
+      ],
+      "limitations": [
+        "less appropriate for gut mucosal or airway-dominant questions",
+        "not a replacement for external knowledge tools on rare biology facts"
+      ]
+    },
+    "tabula_sapiens_small_intestine_cell_annotation": {
+      "specialization": "Small intestine expert for ranked-gene annotation and tissue-of-origin questions in intestinal epithelial, stromal, vascular, and immune contexts.",
+      "preferred_queries": [
+        "small intestine tissue-of-origin inference",
+        "intestinal epithelial annotation",
+        "disambiguating gut-derived profiles from stomach or glandular tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the question suggests intestinal or gut mucosal biology",
+        "Useful when epithelial, absorptive, or gut-associated immune programs need to be distinguished from stomach or pancreas"
+      ],
+      "strengths": [
+        "intestinal tissue context",
+        "gut epithelial routing",
+        "structured answer generation"
+      ],
+      "limitations": [
+        "not the best expert for airway or urinary tissues",
+        "not tuned for purely literature-driven general QA"
+      ]
+    },
+    "tabula_sapiens_spleen_cell_annotation": {
+      "specialization": "Spleen tissue expert for ranked-gene annotation and tissue-of-origin questions in lymphoid and immune-dominant splenic contexts.",
+      "preferred_queries": [
+        "spleen tissue-of-origin inference",
+        "immune-dominant splenic annotation",
+        "disambiguating lymphoid-rich profiles from immune populations resident in non-splenic tissues"
+      ],
+      "routing_hints": [
+        "Prefer when the profile is strongly immune or lymphoid and the tissue origin is unresolved",
+        "Useful when broad immune signatures need a spleen-aware interpretation rather than a tissue-resident immune explanation from another organ"
+      ],
+      "strengths": [
+        "immune-dominant tissue routing",
+        "lymphoid context",
+        "hidden-tissue expert selection"
+      ],
+      "limitations": [
+        "may be overused if the query only shows generic immune markers without splenic context",
+        "not suitable for epithelial-specialized tasks without strong immune framing"
+      ]
+    },
+    "tabula_sapiens_stomach_cell_annotation": {
+      "specialization": "Stomach tissue expert for ranked-gene annotation and tissue-of-origin questions in gastric epithelial, stromal, vascular, and immune contexts.",
+      "preferred_queries": [
+        "stomach tissue-of-origin inference",
+        "gastric epithelial annotation",
+        "distinguishing stomach from small intestine, pancreas, or salivary gland"
+      ],
+      "routing_hints": [
+        "Prefer when digestive tissue is likely and a gastric interpretation is plausible",
+        "Useful when epithelial digestive programs need separation between stomach and small intestine"
+      ],
+      "strengths": [
+        "gastric tissue context",
+        "digestive tissue disambiguation",
+        "supporting-gene grounded outputs"
+      ],
+      "limitations": [
+        "not ideal for airway, urinary, or strongly reproductive contexts",
+        "not a standalone expert for generic biology outside single-cell inference"
+      ]
+    },
+    "tabula_sapiens_trachea_cell_annotation": {
+      "specialization": "Trachea tissue expert for ranked-gene annotation and tissue-of-origin questions in airway epithelial, stromal, vascular, and immune tracheal contexts.",
+      "preferred_queries": [
+        "trachea tissue-of-origin inference",
+        "airway epithelial annotation",
+        "distinguishing tracheal profiles from other epithelial barrier tissues"
+      ],
+      "routing_hints": [
+        "Prefer when airway, respiratory, or tracheal context is likely",
+        "Useful when epithelial barrier signatures could otherwise be confused with bladder, eye, or glandular tissues"
+      ],
+      "strengths": [
+        "airway tissue context",
+        "barrier epithelial routing",
+        "structured tissue-call responses"
+      ],
+      "limitations": [
+        "not the first choice for digestive or reproductive tissue questions",
+        "not designed for non-expression-based open-domain QA"
+      ]
+    }
+  }
+}

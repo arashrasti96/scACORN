@@ -1,0 +1,94 @@
+{
+  "bullets": {
+    "expert_routing-00001": {
+      "id": "expert_routing-00001",
+      "section": "expert_routing",
+      "content": "When a profile has strong canonical markers that directly match one available local expert in the candidate set, route first to that most specific matching expert and avoid unnecessary weakly matched neighbor calls unless the direct match is unavailable, off-target, or unusable. Anchor the choice to that profile’s question, ordered genes, grounded candidate tissue context, candidate labels, and prior tool outcomes, and prefer the expert whose description best fits the dominant markers before considering nearby tissues; do not substitute an omitted or external expert when a direct candidate expert exists. In multi-profile questions, choose the best expert separately for each profile and do not let an expert selected for one profile force the route for another profile; if a profile’s first expert is clearly off-target, switch only that profile to the next best candidate rather than reusing the same expert for all profiles.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T20:34:12.147881+00:00",
+      "updated_at": "2026-06-02T22:56:49.725974+00:00"
+    },
+    "tool_input_restructuring-00002": {
+      "id": "tool_input_restructuring-00002",
+      "section": "tool_input_restructuring",
+      "content": "For each profile, pass exactly one profile_id together with that profile’s unchanged question, full ordered gene list, task family/type, grounded candidate tissue context, and candidate labels; in multi-profile questions, make one isolated call per profile before any comparison summary, and keep all markers, labels, and outcomes profile-specific so nothing is borrowed across profiles. Do not mix evidence or candidate labels between profiles when restructuring inputs, and preserve the full ordered gene list for the routed profile rather than trimming away context needed by the chosen expert. Normalize every profile into the required answer fields for that same profile, then add a brief comparison only after the separate per-profile annotations are complete; if the question asks for an odd-one-out, defer that comparison until after each profile has its own finalized label and evidence.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T20:34:12.147935+00:00",
+      "updated_at": "2026-06-02T22:56:49.725988+00:00"
+    },
+    "expert_output_synthesis-00003": {
+      "id": "expert_output_synthesis-00003",
+      "section": "expert_output_synthesis",
+      "content": "If the expert output supports only the broad contractile class, keep final_label at the broader canonical label smooth muscle cell unless the ordered genes explicitly resolve a narrower subtype; preserve predicted_tissue exactly as the grounded tissue/context from the task, and do not let tissue framing from an off-target expert replace the grounded context. More generally, if the expert is informative but context-shifted or only supports a broader macrophage-like program, keep the broader canonical label instead of importing the expert’s narrower tissue-specific subtype.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T20:34:12.147963+00:00",
+      "updated_at": "2026-06-02T22:52:24.905957+00:00"
+    },
+    "conflict_and_abstain-00004": {
+      "id": "conflict_and_abstain-00004",
+      "section": "conflict_and_abstain",
+      "content": "If the directly routed expert is off-target, expert outputs conflict, no candidate tissue/label is directly supported, or the evidence is broad and weak, lower confidence or abstain rather than forcing a narrow subtype or substituting a plausible but unsupported tissue context. For multi-profile answers, evaluate confidence per profile and keep each profile conservative on its own evidence; set abstain only for the affected profile when the conflict is local, and do not let a weak route from one profile influence another profile’s call or labels. If two profiles receive different-quality evidence, keep the stronger profile’s label intact while lowering confidence only for the weaker profile; if a profile remains unresolved after the best candidate expert is tried, abstain for that profile instead of reusing another profile’s evidence.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T20:34:12.147991+00:00",
+      "updated_at": "2026-06-02T22:56:49.726007+00:00"
+    },
+    "evidence_grounding-00005": {
+      "id": "evidence_grounding-00005",
+      "section": "evidence_grounding",
+      "content": "Ground supporting_genes only in genes from the input ranked list, and prefer the smallest gold-backed marker set that directly supports the chosen label; for naive lymphoid CD8 calls, keep supporting_genes minimal and use only markers that directly justify the subtype. Keep negative_markers limited to true exclusions supported by that same profile, and when the task provides a fixed exclusion set, use those negative markers in the rationale to rule out alternative activated or effector states.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T20:38:51.158677+00:00",
+      "updated_at": "2026-06-02T22:56:44.323148+00:00"
+    },
+    "expert_output_synthesis-00006": {
+      "id": "expert_output_synthesis-00006",
+      "section": "expert_output_synthesis",
+      "content": "Synthesize each profile independently from its own expert output and ranked markers, and keep the label as specific as the evidence supports: if the expert returns a broad call but the ordered genes support a narrower candidate label, preserve the more conservative label that is directly supported by that profile’s evidence. Keep final_label, predicted_tissue, supporting_genes, negative_markers, confidence, expert_models_used, alternative_labels, rationale, and abstain separate for each profile, and do not borrow evidence, exclusions, or confidence across profiles. After the per-profile fields are set, compare profiles only at the end with a concise same-or-different summary that does not merge marker evidence across profiles; for an odd-one-out task, name the odd profile only after all profile-level answers are independently complete.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T21:06:10.893685+00:00",
+      "updated_at": "2026-06-02T22:56:49.725998+00:00"
+    },
+    "expert_output_synthesis-00007": {
+      "id": "expert_output_synthesis-00007",
+      "section": "expert_output_synthesis",
+      "content": "When expert evidence is direct, keep supporting_genes to the smallest gold-backed marker set that still justifies the chosen label, keep negative_markers to true exclusions for that profile, and explicitly use those negative markers in the rationale to rule out alternatives. Preserve predicted_tissue exactly as the grounded tissue/context from the task, and do not widen it or rewrite it into a more specific organ/compartment; if an expert returns a tissue-shifted or too-specific subtype that conflicts with the grounded context, keep the broader candidate label or the grounded tissue-compatible label instead of importing the expert’s organ-specific refinement. Do not combine marker evidence across profiles to strengthen the call, and do not let expert-derived tissue specificity override the grounded tissue.",
+      "helpful": 3,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T21:34:53.279160+00:00",
+      "updated_at": "2026-06-02T22:56:44.323133+00:00"
+    }
+  },
+  "sections": {
+    "expert_routing": [
+      "expert_routing-00001"
+    ],
+    "tool_input_restructuring": [
+      "tool_input_restructuring-00002"
+    ],
+    "expert_output_synthesis": [
+      "expert_output_synthesis-00003",
+      "expert_output_synthesis-00006",
+      "expert_output_synthesis-00007"
+    ],
+    "conflict_and_abstain": [
+      "conflict_and_abstain-00004"
+    ],
+    "evidence_grounding": [
+      "evidence_grounding-00005"
+    ]
+  },
+  "next_id": 7
+}

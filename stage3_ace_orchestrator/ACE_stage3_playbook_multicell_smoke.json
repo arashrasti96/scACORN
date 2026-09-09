@@ -1,0 +1,20 @@
+{
+  "bullets": {
+    "b1": {
+      "id": "b1",
+      "section": "expert_routing",
+      "content": "Per-profile orchestration (explicit actionable rules): For each profile independently: (A) Routing: scan the top N=100 genes (or full list if shorter) for canonical/tissue-specific marker hits mapped to candidate_experts. Route to only experts with ≥1 canonical hit in top N; prefer the expert with the largest number of canonical hits (if tied, call all tied experts). Do NOT call experts with zero canonical hits unless no expert matches (see abstain). Avoid calls based on weak/non-canonical signals. (B) Tool input restructuring: for each routed expert call send one payload per profile containing profile_id, original question, task_family='cell_type_annotation', ordered_genes (full ranked list for that profile), high_priority_genes = top10 of that profile, candidate_labels, and any tissue_hint/grounded_context. Make one independent call per profile. (C) Expert-output contract: require each expert response to include final_label, alternative_labels, predicted_tissue, supporting_genes, negative_markers, confidence, and expert_name. Enforce that supporting_genes and negative_markers used in synthesis are subsets of that profile's ordered_genes or provided negative-marker lists. Record expert_models_used exactly as the experts called. (D) Synthesis & tie-breaking: when multiple experts respond for one profile choose final_label by consensus (same label from majority) or by selecting the expert with the largest number of canonical supporting_genes and highest confidence; populate alternative_labels when ambiguity exists; do NOT mix supporting_genes/negative_markers across profiles. (E) Conflict/OOD handling: if no candidate expert has any canonical marker in top N → set abstain=true and confidence='low' (do not invent a label). If experts disagree and total canonical supporting_genes across experts <2 → include both labels in alternative_labels and set confidence='medium' or 'low'; if high-confidence experts directly conflict with comparable canonical support present alternatives and set confidence='low' or abstain=true. (F) Final validation step: before returning, validate final_answer contains exactly the required fields (final_label, alternative_labels, predicted_tissue, supporting_genes, negative_markers, rationale, expert_models_used, confidence, abstain) for each profile and that all supporting_genes/negative_markers are subsets of the profile's provided ordered_genes or provided exclusion lists.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-05-30T22:19:17.737957+00:00",
+      "updated_at": "2026-05-30T22:21:59.673427+00:00"
+    }
+  },
+  "sections": {
+    "expert_routing": [
+      "b1"
+    ]
+  },
+  "next_id": 0
+}

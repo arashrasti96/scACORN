@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+*key*.txt
+*token*.txt
+
+# Models and training artifacts
+checkpoints/
+**/checkpoints/
+outputs/
+outputs_*/
+**/outputs/
+**/outputs_*/
+runs/
+**/runs/
+eval_output/
+**/eval_output/
+results/
+**/results/
+tmp/
+**/tmp/
+multicell_smoke_results/
+
+# Dataset payloads and generated benchmark artifacts
+data/
+**/data/
+analysis/artifacts/
+analysis/figures/
+analysis/tables/
+*.jsonl
+*.csv
+*.parquet
+*.h5ad
+*.h5
+*.npz
+*.npy
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.tar.gz
+*.zip
+
+# Logs and editor/OS files
+*.log
+.DS_Store
+.vscode/
+.idea/

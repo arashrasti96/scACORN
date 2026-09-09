@@ -1,0 +1,20 @@
+{
+  "bullets": {
+    "tool_orchestration-00001": {
+      "id": "tool_orchestration-00001",
+      "section": "tool_orchestration",
+      "content": "Mandatory expert/oracle consultation for cell-type annotation tasks:\n\n1. **Detect tool availability before answering**\n   - For every `annotation_direct` cell-type task, check the metadata for:\n     - `candidate_experts` (e.g., `tabula_sapiens_bladder_cell_annotation`)\n     - `oracle_experts` (same or additional expert sets)\n   - If either list is non-empty, **mark the sample as requiring expert consultation** unless explicitly exempted by policy.\n\n2. **Call experts before finalizing the label**\n   - If `candidate_experts` exist: invoke the most tissue-relevant expert(s) first (e.g., for `tissue=bladder`, call `tabula_sapiens_bladder_cell_annotation`).\n   - If an `oracle_experts` set is flagged as available (training/feedback setting), **always** query it after candidates and before producing the final JSON.\n   - Only skip an expert if:\n     - The expert's tissue or modality clearly does not match the sample, **and** no mapping is defined; or\n     - The tool is marked unavailable/errored in the environment.\n   - When you skip, record the reason in orchestration logs (e.g., \"skipped lung expert for bladder sample\").\n\n3. **Integrate expert/oracle suggestions**\n   - Compare your initial label + tissue hypothesis with expert outputs:\n     - If they agree: keep your label and use expert-supported markers to refine `supporting_genes` (still restricted to the input gene list).\n     - If they disagree: treat the expert prediction as the **primary candidate** and re-examine the gene list to see if the expert's label is biologically consistent (markers present, key negatives absent).\n   - For training samples with `oracle_experts`:\n     - Prefer the oracle-consistent label when there is no strong, gene-based contradiction.\n     - Use the oracle-supported marker subset to guide `supporting_genes` choice (e.g., for mast cells in bladder, prioritize `TPSAB1`, `TPSB2`, `HPGDS`, `CPA3` over equally plausible but less canonical choices).\n\n4. **Maintain gene-grounded reasoning**\n   - Even when using experts, **always** tie the final decision to concrete genes from the input list:\n     - Confirm positive markers for the proposed cell type.\n     - Check for absence of strong counter-markers for alternative labels.\n   - Example (mast cell vs basophil/neutrophil/plasma cell):\n     - Mast-cell positives: `TPSAB1`, `TPSB2`, `CPA3`, `HPGDS` present.\n     - Neutrophil negatives: lack of `ELANE`, `MPO`.\n     - Plasma-cell negatives: lack of `SDC1`, immunoglobulin genes.\n     - If expert/oracle also returns \"mast cell\" for bladder, accept that label and select supporting genes from the canonical mast-cell markers in the input.\n\n5. **Exception handling and documentation**\n   - Only bypass all experts when they are truly unavailable or explicitly out-of-scope by policy.\n   - When bypassing, note in the orchestration rationale: which experts existed, why they were not used, and why the unaided prediction is still acceptable.\n   - During training with oracle feedback, treat any missed oracle call as an error signal and adjust future behavior to prioritize oracle invocation.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-05-10T23:06:52.744774+00:00",
+      "updated_at": "2026-05-10T23:06:52.744785+00:00"
+    }
+  },
+  "sections": {
+    "tool_orchestration": [
+      "tool_orchestration-00001"
+    ]
+  },
+  "next_id": 1
+}

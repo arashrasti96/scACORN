@@ -1,0 +1,449 @@
+{
+  "paths": {
+    "data_dir": "data",
+    "raw_dir": "data/raw",
+    "normalized_dir": "data/normalized",
+    "exports_dir": "data/exports",
+    "reports_dir": "data/reports"
+  },
+  "defaults": {
+    "organism": "homo_sapiens",
+    "max_cells_per_dataset": 50000,
+    "top_genes": 200,
+    "evidence_gene_count": 5,
+    "differential_candidate_count": 4,
+    "min_label_frequency": 25,
+    "state_label_keys": [
+      "cell_state",
+      "state",
+      "activation_state",
+      "disease_state",
+      "condition",
+      "status"
+    ],
+    "context_allowlist": [
+      "organism",
+      "tissue",
+      "tissue_general",
+      "cell_type",
+      "cell_type_ontology_term_id",
+      "tissue_ontology_term_id",
+      "disease",
+      "disease_ontology_term_id",
+      "assay",
+      "assay_ontology_term_id",
+      "donor_id",
+      "sex",
+      "development_stage",
+      "suspension_type"
+    ]
+  },
+  "datasets": [
+    {
+      "name": "tabula_sapiens_audit_seed",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "lung",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale",
+        "tissue_identification_rationale",
+        "differential_diagnosis"
+      ],
+      "required_obs_columns": [
+        "cell_type",
+        "tissue"
+      ],
+      "notes": "Seed dataset spec. Use search-census plus audit to curate additional approved datasets locally."
+    },
+    {
+      "name": "tabula_sapiens_heart_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "heart",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for heart cells."
+    },
+    {
+      "name": "tabula_sapiens_pancreas_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "pancreas",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for pancreas cells."
+    },
+    {
+      "name": "tabula_sapiens_bladder_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "bladder",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for bladder cells."
+    },
+    {
+      "name": "tabula_sapiens_spleen_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "spleen",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for spleen cells."
+    },
+    {
+      "name": "tabula_sapiens_small_intestine_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "small_intestine",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for small intestine cells."
+    },
+    {
+      "name": "tabula_sapiens_stomach_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "stomach",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for stomach cells."
+    },
+    {
+      "name": "tabula_sapiens_trachea_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "trachea",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for trachea cells."
+    },
+    {
+      "name": "tabula_sapiens_prostate_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "prostate",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for prostate cells."
+    },
+    {
+      "name": "tabula_sapiens_ear_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "ear",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for ear cells."
+    },
+    {
+      "name": "tabula_sapiens_ovary_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "ovary",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for ovary cells."
+    },
+    {
+      "name": "tabula_sapiens_eye_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "eye",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for eye cells."
+    },
+    {
+      "name": "tabula_sapiens_salivary_gland_cell_annotation",
+      "source": "cellxgene_census",
+      "enabled": true,
+      "census_version": "latest",
+      "organism": "homo_sapiens",
+      "collection_name_contains": "Tabula Sapiens",
+      "dataset_title_contains": "salivary_gland",
+      "obs_columns": [
+        "cell_type",
+        "cell_type_ontology_term_id",
+        "tissue",
+        "tissue_general",
+        "tissue_ontology_term_id",
+        "assay",
+        "assay_ontology_term_id",
+        "disease",
+        "disease_ontology_term_id",
+        "donor_id",
+        "sex",
+        "development_stage",
+        "suspension_type"
+      ],
+      "task_types": [
+        "cell_annotation_rationale"
+      ],
+      "required_obs_columns": [
+        "cell_type"
+      ],
+      "notes": "Organ-specific cell type annotation benchmark for salivary gland cells."
+    }
+  ]
+}

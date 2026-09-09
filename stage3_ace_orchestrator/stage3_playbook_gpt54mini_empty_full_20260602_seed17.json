@@ -1,0 +1,149 @@
+{
+  "bullets": {
+    "expert_routing-00001": {
+      "id": "expert_routing-00001",
+      "section": "expert_routing",
+      "content": "For single-profile questions, inspect the available candidate expert list first and route to the most directly matched expert before any fallback; prefer the anatomically closest expert that matches the profile’s grounded tissue context and ranked genes, and avoid unnecessary weakly matched organ-specific calls. For multi-profile questions, apply the same rule independently per profile_id: choose the best-matched expert for that profile before any fallback, keep the profile’s own question slice, ordered genes, grounded tissue context, task type, and candidate labels unchanged, and do not reuse one weakly matched expert across profiles when a cleaner profile-local expert is available.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T22:31:33.781849+00:00",
+      "updated_at": "2026-06-03T12:34:43.244067+00:00"
+    },
+    "tool_input_restructuring-00002": {
+      "id": "tool_input_restructuring-00002",
+      "section": "tool_input_restructuring",
+      "content": "When routing a call, pass the exact question, full ordered genes, task family/type, grounded tissue context, and candidate labels together; keep the candidate tissue explicit in every profile so the expert stays anchored to the intended organ context and does not drift to a broader or source-tissue fallback. Preserve the ordered gene list and candidate labels exactly as given rather than trimming or reinterpreting them. If multiple profiles are present, keep each profile’s candidate tissue and labels separate in its own expert call.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T22:31:33.781897+00:00",
+      "updated_at": "2026-06-03T12:33:22.759033+00:00"
+    },
+    "expert_output_synthesis-00003": {
+      "id": "expert_output_synthesis-00003",
+      "section": "expert_output_synthesis",
+      "content": "When the expert output supports a cell identity within a broader tissue class, preserve the exact supported tissue granularity from the task context during synthesis; do not over-specificize or broaden predicted_tissue to a different tissue level such as the generic organ name when the task context expects a more specific tissue (for example, keep 'exocrine pancreas' when that is the grounded target). Keep final_label and predicted_tissue aligned to the same supported scope, and if the expert is only specific enough for a broader or mismatched tissue, lower confidence or abstain rather than refining or broadening the tissue call.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T22:31:33.781927+00:00",
+      "updated_at": "2026-06-03T10:55:37.631981+00:00"
+    },
+    "conflict_and_abstain-00004": {
+      "id": "conflict_and_abstain-00004",
+      "section": "conflict_and_abstain",
+      "content": "If expert outputs conflict, no candidate tissue is supported, the evidence is weak, or the routed expert is off-context for the profile, lower confidence or abstain instead of merging evidence across calls. Keep each profile separate, prefer the clean direct match over a weaker fallback, and if the only available support is weak or mismatched, do not upgrade confidence, do not replace the profile-local label, and do not synthesize across profiles to resolve the conflict.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T22:31:33.781956+00:00",
+      "updated_at": "2026-06-03T12:33:22.759045+00:00"
+    },
+    "evidence_grounding-00005": {
+      "id": "evidence_grounding-00005",
+      "section": "evidence_grounding",
+      "content": "Set supporting_genes to only the minimal expert-explicit markers that directly justify the chosen label, and keep negative_markers equally minimal and profile-local, using only the exclusions needed to rule out alternatives. Do not inflate either list with extra plausible markers, broad organ-level exclusions, or fallback-derived evidence when the expert trace already provides enough grounding.",
+      "helpful": 3,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-02T22:31:33.781979+00:00",
+      "updated_at": "2026-06-03T12:34:43.244132+00:00"
+    },
+    "conflict_and_abstain-00006": {
+      "id": "conflict_and_abstain-00006",
+      "section": "conflict_and_abstain",
+      "content": "If expert outputs conflict, no candidate tissue is supported, the evidence is weak or profile-mismatched, or the routed expert predicts an off-context tissue, lower confidence or abstain instead of merging evidence across calls; keep each profile separate, and do not let an off-context expert replace the selected profile-local expert, override its grounded label or tissue call, or upgrade confidence from weak fallback evidence. When the only available support comes from a mismatched fallback expert rather than the best candidate expert, treat the result as weak and conservative.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T00:11:44.758733+00:00",
+      "updated_at": "2026-06-03T12:34:43.244102+00:00"
+    },
+    "expert_output_synthesis-00007": {
+      "id": "expert_output_synthesis-00007",
+      "section": "expert_output_synthesis",
+      "content": "When a directly matched expert returns a valid but more specific subtype than the task’s target label, keep the expert’s tissue scope and normalize final_label to the requested ground-truth abstraction instead of echoing the subtype wording. Keep supporting_genes and negative_markers minimal and expert-explicit for that profile, keep expert_models_used exactly equal to the tools actually called, and lower confidence if the expert output is slightly narrower than the target label.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T02:53:26.152369+00:00",
+      "updated_at": "2026-06-03T12:28:55.771296+00:00"
+    },
+    "expert_output_synthesis-00008": {
+      "id": "expert_output_synthesis-00008",
+      "section": "expert_output_synthesis",
+      "content": "When the chosen expert supports a label within a small-intestine subregion, preserve the exact grounded scope supported by the task context and the expert output; do not reassign the call to a neighboring segment such as duodenum, jejunum, or ileum unless the evidence explicitly distinguishes that subregion. Keep final_label and predicted_tissue aligned to the same supported scope, use only expert-explicit supporting_genes and minimal negative_markers, and if the evidence supports enterocyte identity but not the precise segment, lower confidence or abstain rather than over-specificizing.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T02:59:05.575649+00:00",
+      "updated_at": "2026-06-03T11:49:32.983762+00:00"
+    },
+    "expert_output_synthesis-00009": {
+      "id": "expert_output_synthesis-00009",
+      "section": "expert_output_synthesis",
+      "content": "When expert evidence supports a specific label within a broader secretory/goblet family, preserve the most specific supported candidate label instead of collapsing it into a generic mucus-secreting call; keep predicted_tissue aligned to the grounded organ context, and do not add extra markers beyond the minimal expert-explicit set that directly supports that specific label.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T09:23:36.949582+00:00",
+      "updated_at": "2026-06-03T12:28:55.771327+00:00"
+    },
+    "tool_input_restructuring-00010": {
+      "id": "tool_input_restructuring-00010",
+      "section": "tool_input_restructuring",
+      "content": "For multi-profile samples, make exactly one expert call per profile_id and restructure each call with that profile’s exact question slice, full ordered gene list, task family/type, grounded tissue context, and candidate labels so the expert stays anchored to the intended profile; do not merge profiles into a shared call or substitute an off-context fallback profile context when a better profile-local expert is available. Keep each profile isolated from the others when preparing inputs and when reading back outputs, and keep the per-profile candidate labels and context unchanged across the call.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T10:54:14.389959+00:00",
+      "updated_at": "2026-06-03T12:34:43.244082+00:00"
+    },
+    "evidence_grounding-00011": {
+      "id": "evidence_grounding-00011",
+      "section": "evidence_grounding",
+      "content": "If the ranked list is dominated by mitochondrial or ribosomal genes, mention that low-complexity caveat in rationale, keep supporting_genes minimal and direct, and lower confidence when the expert evidence is weak rather than adding speculative markers.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T10:55:07.197656+00:00",
+      "updated_at": "2026-06-03T11:44:56.924331+00:00"
+    },
+    "expert_output_synthesis-00012": {
+      "id": "expert_output_synthesis-00012",
+      "section": "expert_output_synthesis",
+      "content": "If a profile has a clean directly supported label, keep that profile-local label exactly and keep predicted_tissue at the task’s grounded tissue scope; do not broaden the tissue into a compound organ/subsite label or reframe the label into a broader subtype when the expert already gives a clean call. During synthesis, keep each profile’s label, predicted_tissue, supporting_genes, negative_markers, confidence, and expert_models_used isolated from the other profiles; never merge evidence across profiles to justify a label, and if the only evidence comes from a weak or off-context expert trace, keep the tissue call conservative rather than expanding it. Use only the allowed final_answer fields.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T11:01:57.954952+00:00",
+      "updated_at": "2026-06-03T12:34:43.244092+00:00"
+    }
+  },
+  "sections": {
+    "expert_routing": [
+      "expert_routing-00001"
+    ],
+    "tool_input_restructuring": [
+      "tool_input_restructuring-00002",
+      "tool_input_restructuring-00010"
+    ],
+    "expert_output_synthesis": [
+      "expert_output_synthesis-00003",
+      "expert_output_synthesis-00007",
+      "expert_output_synthesis-00008",
+      "expert_output_synthesis-00009",
+      "expert_output_synthesis-00012"
+    ],
+    "conflict_and_abstain": [
+      "conflict_and_abstain-00004",
+      "conflict_and_abstain-00006"
+    ],
+    "evidence_grounding": [
+      "evidence_grounding-00005",
+      "evidence_grounding-00011"
+    ]
+  },
+  "next_id": 12
+}

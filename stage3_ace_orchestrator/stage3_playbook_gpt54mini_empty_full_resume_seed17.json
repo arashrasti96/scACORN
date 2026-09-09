@@ -1,0 +1,116 @@
+{
+  "bullets": {
+    "expert_routing-00001": {
+      "id": "expert_routing-00001",
+      "section": "expert_routing",
+      "content": "For each profile_id, inspect the profile’s question, candidate tissue context, ordered genes, candidate labels, expert descriptions, and prior tool outcomes, then choose the single most directly matched local expert first; when a candidate-context expert is available and fits the gene and tissue clues better than an off-context expert, route to that expert before any weaker alternative, and avoid unnecessary weakly matched or off-context calls unless the best-matched expert is unavailable or remains clearly insufficient after inspection.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T15:29:37.058069+00:00",
+      "updated_at": "2026-06-04T16:30:32.250059+00:00"
+    },
+    "tool_input_restructuring-00002": {
+      "id": "tool_input_restructuring-00002",
+      "section": "tool_input_restructuring",
+      "content": "When calling the chosen expert for a profile, pass one self-contained payload containing the original question, that profile’s ordered genes unchanged, the task family/type, grounded context, and candidate labels; if candidate tissue context is available, include it in that same payload, and for multi-profile questions, make one separate expert call per profile_id with isolated evidence so each profile is routed to its own best-matched expert without borrowing labels, markers, or tissue from another profile.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T15:29:37.058110+00:00",
+      "updated_at": "2026-06-04T16:30:32.250073+00:00"
+    },
+    "expert_output_synthesis-00003": {
+      "id": "expert_output_synthesis-00003",
+      "section": "expert_output_synthesis",
+      "content": "If the chosen expert clearly supports the right lineage and the ranked genes contain canonical markers for that identity, preserve the most specific expert-backed label that fits the candidate-label schema instead of flattening it to a broader generic label; for smooth-muscle-like profiles, keep a subtype such as vascular associated smooth muscle cell when that is the strongest expert-backed match, set predicted_tissue to the broad tissue family supported by the expert, keep alternative_labels for nearby synonyms, and when the expert output is noisy or oddly formatted, preserve the strongest expert-backed identity, supporting_genes, and confidence rather than replacing it with a weaker generic label.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T15:29:37.058148+00:00",
+      "updated_at": "2026-06-04T16:26:23.466665+00:00"
+    },
+    "conflict_and_abstain-00004": {
+      "id": "conflict_and_abstain-00004",
+      "section": "conflict_and_abstain",
+      "content": "If expert outputs conflict, no candidate tissue is supported, the strongest available expert is off-context, or the evidence is weak for a profile, lower confidence or abstain for that profile rather than forcing a more specific label or replacing the candidate tissue; when a candidate-context expert is clearly better matched than a conflicting off-context expert, prefer the candidate-context expert and ignore unsupported markers from the weaker call.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T15:29:37.058176+00:00",
+      "updated_at": "2026-06-04T16:30:32.250092+00:00"
+    },
+    "evidence_grounding-00005": {
+      "id": "evidence_grounding-00005",
+      "section": "evidence_grounding",
+      "content": "Ground each profile’s answer in expert-supported evidence only: use only genes present in the ordered input list that the chosen expert actually supports, keep supporting_genes minimal and limited to the chosen expert’s own supported markers, and use only the expert-supported negative_markers set without adding exclusions from intuition or from a weaker off-context call; if the best-matched expert supports only a broad identity, keep the final label broad rather than inventing a more specific subtype or unrelated tissue context.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T15:29:37.058199+00:00",
+      "updated_at": "2026-06-04T16:30:32.250084+00:00"
+    },
+    "expert_output_synthesis-00006": {
+      "id": "expert_output_synthesis-00006",
+      "section": "expert_output_synthesis",
+      "content": "For multi-profile questions, synthesize each profile only from its own expert output: set final_label, alternative_labels, predicted_tissue, supporting_genes, negative_markers, rationale, expert_models_used, confidence, and abstain from that profile alone, never borrow markers, labels, confidence, or tissue from another profile; keep supporting_genes and negative_markers restricted to the expert-supported sets for that same profile, and if the chosen expert is off-context or weakly supported, lower confidence or abstain rather than replacing it with a label or marker set from a different profile.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-03T22:14:01.800015+00:00",
+      "updated_at": "2026-06-04T16:30:32.250102+00:00"
+    },
+    "expert_output_synthesis-00007": {
+      "id": "expert_output_synthesis-00007",
+      "section": "expert_output_synthesis",
+      "content": "For multi-profile odd-one-out answers, ground each profile’s label and evidence separately first, then summarize the comparison only after the per-profile labels are fixed; do not merge evidence across profiles when deciding which cell is the odd one out. If both profiles are coherent but different lineages, say neither profile is the odd one out.",
+      "helpful": 2,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-04T04:51:43.882911+00:00",
+      "updated_at": "2026-06-04T16:29:06.899512+00:00"
+    },
+    "expert_output_synthesis-00008": {
+      "id": "expert_output_synthesis-00008",
+      "section": "expert_output_synthesis",
+      "content": "When writing the final answer for a profile, keep synthesis strictly profile-local: use only that profile’s expert final label, alternative_labels, predicted_tissue, supporting_genes, negative_markers, confidence, and abstain, keep supporting_genes and negative_markers to the smallest expert-backed sets for that same profile, and preserve the most specific expert-backed subtype only when it is directly supported by the chosen expert; otherwise lower confidence or abstain rather than mixing evidence across experts, importing markers from an off-context call, or upgrading a broad expert-backed call into a narrower subtype/tissue from off-context evidence.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-04T04:52:51.567973+00:00",
+      "updated_at": "2026-06-04T16:30:05.976026+00:00"
+    },
+    "conflict_and_abstain-00009": {
+      "id": "conflict_and_abstain-00009",
+      "section": "conflict_and_abstain",
+      "content": "If expert outputs disagree for a profile, the candidate tissue is unsupported, or the evidence is too weak to justify a candidate label, lower confidence or abstain for that profile instead of forcing a specific label; do not resolve conflicts by importing markers, labels, or tissue from another profile or from an off-context expert, and if a candidate-context expert is available but was not used, prefer abstention over synthesizing from the weaker off-context call.",
+      "helpful": 1,
+      "harmful": 0,
+      "neutral": 0,
+      "created_at": "2026-06-04T16:19:58.021826+00:00",
+      "updated_at": "2026-06-04T16:29:11.093621+00:00"
+    }
+  },
+  "sections": {
+    "expert_routing": [
+      "expert_routing-00001"
+    ],
+    "tool_input_restructuring": [
+      "tool_input_restructuring-00002"
+    ],
+    "expert_output_synthesis": [
+      "expert_output_synthesis-00003",
+      "expert_output_synthesis-00006",
+      "expert_output_synthesis-00007",
+      "expert_output_synthesis-00008"
+    ],
+    "conflict_and_abstain": [
+      "conflict_and_abstain-00004",
+      "conflict_and_abstain-00009"
+    ],
+    "evidence_grounding": [
+      "evidence_grounding-00005"
+    ]
+  },
+  "next_id": 9
+}

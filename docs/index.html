@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="scACORN orchestrates specialized small language models for evidence-grounded single-cell transcriptomic interpretation.">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="scACORN | Specialized SLMs for single-cell interpretation">
+  <meta property="og:description" content="Context-engineered agent orchestration of specialized small language models for single-cell transcriptomic interpretation.">
+  <meta property="og:image" content="assets/figures/workflow.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>scACORN | Single-cell agent orchestration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="app.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="scACORN home">
+      <span class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <span>scACORN</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#approach">Approach</a>
+      <a href="#results">Results</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#people">People</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-button" href="https://github.com/arashrasti96/scACORN" target="_blank" rel="noreferrer" aria-label="View code on GitHub" data-tooltip="GitHub">
+        <i data-lucide="github" aria-hidden="true"></i>
+      </a>
+      <a class="button button-compact" href="assets/downloads/scACORN-paper.pdf" target="_blank">
+        <i data-lucide="file-text" aria-hidden="true"></i>
+        Paper
+      </a>
+      <button class="menu-button icon-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" data-menu-button>
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-mobile-nav>
+      <a href="#approach">Approach</a>
+      <a href="#results">Results</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#people">People</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="expression-field" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="eyebrow"><span></span> Single-cell transcriptomics &middot; Agentic AI</div>
+        <h1 id="hero-title">sc<span>ACORN</span></h1>
+        <p class="hero-expansion">single-cell <strong>A</strong>gentic <strong>C</strong>ontext <strong>OR</strong>chestration <strong>N</strong>etwork</p>
+        <p class="hero-title">Context-engineered agent orchestration of specialized small language models for single-cell transcriptomic interpretation</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="assets/downloads/scACORN-paper.pdf" target="_blank">
+            <i data-lucide="file-down" aria-hidden="true"></i>
+            Read the paper
+          </a>
+          <a class="button button-secondary" href="https://github.com/arashrasti96/scACORN" target="_blank" rel="noreferrer">
+            <i data-lucide="github" aria-hidden="true"></i>
+            Explore the code
+          </a>
+        </div>
+        <p class="authors">Arash Rasti-Meymandi, Sepideh Nahali, Eustache Paramithiotis, Angela M. Cheung &amp; Elham Dolatabadi</p>
+      </div>
+      <div class="hero-signal" aria-hidden="true">
+        <span>Ranked expression profile</span>
+        <div class="gene-strip">
+          <b style="--level: 96%">CD3D</b><b style="--level: 87%">CD8A</b><b style="--level: 79%">NKG7</b><b style="--level: 68%">CCL5</b><b style="--level: 54%">GZMB</b><b style="--level: 42%">LTB</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="at-a-glance" aria-label="Study at a glance">
+      <div><strong>20</strong><span>adapters trained</span></div>
+      <div><strong>10</strong><span>human tissues</span></div>
+      <div><strong>~170k</strong><span>held-out annotations</span></div>
+      <div><strong>80</strong><span>free-form questions</span></div>
+      <div><strong>12</strong><span>baseline systems</span></div>
+    </section>
+
+    <section class="intro section" id="approach">
+      <div class="section-lead reveal">
+        <p class="section-index">01 &middot; The approach</p>
+        <h2>Build local expertise.<br>Compose it in context.</h2>
+      </div>
+      <div class="intro-copy reveal">
+        <p class="lede">Single-cell atlases now exceed 66 million cells, but a ranked expression profile is not yet a reliable biological answer.</p>
+        <p>scACORN separates the acquisition of domain expertise from the policy used to select and integrate it. Compact experts learn tissue-specific transcriptomic structure and grounded biological completions. A fixed language-model agent then selects and combines those experts using a natural-language playbook optimized from textual feedback.</p>
+      </div>
+
+      <figure class="paper-figure workflow-figure reveal">
+        <button class="figure-open" type="button" data-lightbox="assets/figures/workflow.webp" data-caption="Overview of scACORN: two-stage expert construction, expert library, textual playbook optimization, and profile-linked inference.">
+          <img src="assets/figures/workflow.webp" width="2800" height="1734" alt="scACORN workflow showing domain alignment, expert specialization, expert library construction, playbook optimization, and inference" loading="eager">
+          <span class="expand-control"><i data-lucide="maximize-2" aria-hidden="true"></i> Expand figure</span>
+        </button>
+        <figcaption><span>Figure 1</span> scACORN constructs specialized scSLMs, learns how to route among them, and synthesizes profile-linked molecular evidence.</figcaption>
+      </figure>
+
+      <ol class="method-steps">
+        <li class="reveal">
+          <span class="step-number">01</span>
+          <div>
+            <p class="step-label">Domain alignment</p>
+            <h3>Fit the backbone to transcriptomic geometry</h3>
+            <p>Contrastive LoRA adaptation organizes the cell-to-text backbone around a target tissue while keeping the base model frozen.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="step-number">02</span>
+          <div>
+            <p class="step-label">Expert specialization</p>
+            <h3>Learn answers without erasing structure</h3>
+            <p>Question-conditioned completions are trained with pointwise, distributional, and relational preservation objectives.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="step-number">03</span>
+          <div>
+            <p class="step-label">Textual orchestration</p>
+            <h3>Route, combine, and ground</h3>
+            <p>A fixed orchestrator selects one or more experts and improves its inference policy through a textual playbook, without gradient updates.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="results section" id="results">
+      <div class="section-lead reveal">
+        <p class="section-index">02 &middot; Key results</p>
+        <h2>Specialization changes the signal.</h2>
+        <p>Across ten Tabula Sapiens tissues, each stage improves the part of the system it is designed to control: representation, expert reasoning, and evidence use.</p>
+      </div>
+
+      <article class="result-story result-story-domain reveal">
+        <div class="result-copy">
+          <span class="result-stage">Stage 1</span>
+          <h3>Domain alignment recovers cell-type structure</h3>
+          <p>Adaptation moves the language-model backbone into the range of purpose-built ranked-gene representations while preserving a reusable model state.</p>
+          <div class="metric-pair">
+            <div><span>Macro-F1</span><strong>0.36 <i data-lucide="arrow-right" aria-hidden="true"></i> 0.64</strong></div>
+            <div><span>Recall@5</span><strong>0.87 <i data-lucide="arrow-right" aria-hidden="true"></i> 0.97</strong></div>
+          </div>
+        </div>
+        <figure class="paper-figure">
+          <button class="figure-open" type="button" data-lightbox="assets/figures/domain-alignment.webp" data-caption="Domain alignment improves classification, retrieval, and local cell-type organization across ten tissues.">
+            <img src="assets/figures/domain-alignment.webp" width="2800" height="2313" alt="Domain alignment results with macro-F1, Recall at 5, per-tissue scores, and UMAP projections" loading="lazy">
+            <span class="expand-control"><i data-lucide="maximize-2" aria-hidden="true"></i> Expand</span>
+          </button>
+          <figcaption><span>Figure 2</span> Classification, retrieval, and UMAP structure after domain alignment.</figcaption>
+        </figure>
+      </article>
+
+      <article class="result-story result-story-expert reveal">
+        <div class="result-copy">
+          <span class="result-stage">Stage 2</span>
+          <h3>Compact experts improve labels and molecular grounding</h3>
+          <p>Tissue-specialized scSLMs outperform much larger general-purpose and transcriptomic models, particularly on evidence and exclusionary markers.</p>
+          <div class="metric-pair">
+            <div><span>Mean exact match</span><strong>0.89</strong></div>
+            <div><span>Evidence-gene F1</span><strong>0.82</strong></div>
+            <div><span>Negative-marker F1</span><strong>0.95</strong></div>
+          </div>
+        </div>
+        <figure class="paper-figure">
+          <button class="figure-open" type="button" data-lightbox="assets/figures/expert-specialization.webp" data-caption="Specialized scSLMs compared with transcriptomic, open-source, and closed-source language models.">
+            <img src="assets/figures/expert-specialization.webp" width="2800" height="2370" alt="Benchmark bars comparing specialized scSLMs with open-source, closed-source, and transcriptomic models" loading="lazy">
+            <span class="expand-control"><i data-lucide="maximize-2" aria-hidden="true"></i> Expand</span>
+          </button>
+          <figcaption><span>Figure 3</span> Ontology credit, evidence-gene F1, macro-F1, and negative-marker F1.</figcaption>
+        </figure>
+      </article>
+
+      <article class="result-story result-story-orchestration reveal">
+        <div class="result-copy">
+          <span class="result-stage">Stage 3</span>
+          <h3>A textual playbook makes evidence use more reliable</h3>
+          <p>The largest optimization effect is on whether cited genes are actually supported by the input. The pattern holds under both GPT-5.4-mini and Claude Sonnet 4.5 orchestrators.</p>
+          <div class="unsupported-rate" aria-label="Unsupported support-gene citations decreased from 14.5 percent to 3.5 percent">
+            <div><span>14.5%</span><small>initial</small></div>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div><span>3.5%</span><small>optimized</small></div>
+          </div>
+          <p class="metric-note">Unsupported support-gene citation rate, GPT-5.4-mini</p>
+        </div>
+        <div class="trajectory-grid">
+          <figure class="paper-figure">
+            <button class="figure-open" type="button" data-lightbox="assets/figures/evidence-grounding.webp" data-caption="Input-grounded support-gene score across playbook optimization checkpoints.">
+              <img src="assets/figures/evidence-grounding.webp" width="2000" height="1237" alt="Evidence grounding trajectories for GPT-5.4-mini and Claude Sonnet 4.5" loading="lazy">
+              <span class="expand-control"><i data-lucide="maximize-2" aria-hidden="true"></i> Expand</span>
+            </button>
+          </figure>
+          <figure class="paper-figure">
+            <button class="figure-open" type="button" data-lightbox="assets/figures/ontology-agreement.webp" data-caption="Ontology-aware agreement across playbook optimization checkpoints.">
+              <img src="assets/figures/ontology-agreement.webp" width="2000" height="1237" alt="Ontology agreement trajectories for GPT-5.4-mini and Claude Sonnet 4.5" loading="lazy">
+              <span class="expand-control"><i data-lucide="maximize-2" aria-hidden="true"></i> Expand</span>
+            </button>
+          </figure>
+          <p class="trajectory-caption"><span>Figure 4</span> Playbook optimization trajectories under two fixed orchestrators.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="benchmark section" id="benchmark">
+      <div class="benchmark-heading reveal">
+        <div>
+          <p class="section-index">03 &middot; Tissue benchmark</p>
+          <h2>Ten tissues.<br>One shared protocol.</h2>
+        </div>
+        <p>Held-out Stage 2 performance for each tissue-specialized expert. Select a metric to compare the tissue profile; the table retains the complete reported results.</p>
+      </div>
+
+      <div class="benchmark-controls reveal" role="group" aria-label="Select chart metric">
+        <button type="button" class="metric-toggle is-active" data-metric="exact" aria-pressed="true">Exact match</button>
+        <button type="button" class="metric-toggle" data-metric="grounding" aria-pressed="false">Evidence grounding</button>
+      </div>
+
+      <div class="benchmark-layout reveal">
+        <div class="tissue-chart" data-tissue-chart aria-label="Tissue benchmark bar chart"></div>
+        <div class="table-wrap" tabindex="0" aria-label="Scrollable tissue benchmark results">
+          <table>
+            <thead>
+              <tr><th>Tissue</th><th>N test</th><th>Exact</th><th>Grounding</th><th>Latency</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bladder</td><td>1,532</td><td>0.990</td><td>0.910</td><td>11.61 s</td></tr>
+              <tr><td>Ear</td><td>1,693</td><td>0.960</td><td>0.910</td><td>10.67 s</td></tr>
+              <tr><td>Eye</td><td>894</td><td>0.802</td><td>0.693</td><td>11.17 s</td></tr>
+              <tr><td>Heart</td><td>656</td><td>0.956</td><td>0.899</td><td>10.67 s</td></tr>
+              <tr><td>Ovary</td><td>1,768</td><td>0.950</td><td>0.895</td><td>11.49 s</td></tr>
+              <tr><td>Pancreas</td><td>1,449</td><td>0.937</td><td>0.757</td><td>11.50 s</td></tr>
+              <tr><td>Prostate</td><td>916</td><td>0.912</td><td>0.759</td><td>11.47 s</td></tr>
+              <tr><td>Salivary gland</td><td>657</td><td>0.760</td><td>0.483</td><td>12.05 s</td></tr>
+              <tr><td>Small intestine</td><td>637</td><td>0.719</td><td>0.920</td><td>11.47 s</td></tr>
+              <tr><td>Spleen</td><td>2,859</td><td>0.942</td><td>0.923</td><td>11.56 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-summary section">
+      <div class="summary-label reveal">
+        <p class="section-index">04 &middot; Abstract</p>
+        <div class="summary-mark" aria-hidden="true"><i data-lucide="quote"></i></div>
+      </div>
+      <div class="abstract reveal">
+        <p>Single-cell atlases now exceed 66 million cells, but turning a ranked expression profile and a free-form biological question into a reliable, evidence-grounded answer remains unsolved.</p>
+        <p>scACORN combines specialized small language models with context-engineered agent orchestration for their selection and composition at inference time. Domain-aligned contrastive adaptation fits a pretrained cell-to-text backbone to target transcriptomic geometry; geometry-preserving specialization learns biological completions without eroding that geometry; and a fixed orchestrator selects and combines experts under a playbook optimized from textual feedback.</p>
+        <p>The results support specialization and orchestration as complementary responses to the heterogeneity and evidentiary demands of single-cell analysis.</p>
+      </div>
+    </section>
+
+    <section class="resources section" id="people">
+      <div class="resource-main reveal">
+        <p class="section-index">05 &middot; Paper &amp; code</p>
+        <h2>Reproduce the workflow.</h2>
+        <p>The public repository includes domain alignment, expert specialization, textual orchestration, benchmark evaluation, dataset preparation, and manuscript figure generation.</p>
+        <div class="resource-actions">
+          <a class="button button-primary" href="https://github.com/arashrasti96/scACORN" target="_blank" rel="noreferrer"><i data-lucide="github" aria-hidden="true"></i> GitHub repository</a>
+          <a class="button button-secondary" href="assets/downloads/scACORN-paper.pdf" target="_blank"><i data-lucide="file-down" aria-hidden="true"></i> Download PDF</a>
+        </div>
+      </div>
+
+      <div class="citation reveal">
+        <div class="citation-heading">
+          <h3>Cite scACORN</h3>
+          <button class="icon-button icon-button-light" type="button" data-copy-citation aria-label="Copy BibTeX citation" data-tooltip="Copy BibTeX">
+            <i data-lucide="copy" aria-hidden="true"></i>
+          </button>
+        </div>
+        <pre><code data-citation>@article{rasti-meymandi_scacorn,
+  title = {scACORN: Context-engineered agent orchestration of specialized small language models for single-cell transcriptomic interpretation},
+  author = {Rasti-Meymandi, Arash and Nahali, Sepideh and Paramithiotis, Eustache and Cheung, Angela M. and Dolatabadi, Elham},
+  note = {Preprint}
+}</code></pre>
+        <p class="citation-status" data-copy-status aria-live="polite">Publication details will be updated with the preprint record.</p>
+      </div>
+
+      <div class="people reveal">
+        <h3>Authors &amp; affiliations</h3>
+        <p class="author-list">Arash Rasti-Meymandi<sup>1,5</sup> &middot; Sepideh Nahali<sup>2</sup> &middot; Eustache Paramithiotis<sup>4</sup> &middot; Angela M. Cheung<sup>1</sup> &middot; Elham Dolatabadi<sup>3,5</sup></p>
+        <ol class="affiliations">
+          <li><span>1</span> Department of Medicine, University of Toronto</li>
+          <li><span>2</span> School of Health Policy and Management, Faculty of Health, York University</li>
+          <li><span>3</span> York University</li>
+          <li><span>4</span> CellCarta</li>
+          <li><span>5</span> Vector Institute</li>
+        </ol>
+        <a class="contact-link" href="mailto:edolatab@yorku.ca"><i data-lucide="mail" aria-hidden="true"></i> Correspondence: edolatab@yorku.ca</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span><span>scACORN</span></a>
+    <p>Specialized models. Contextual orchestration. Traceable evidence.</p>
+    <a href="https://github.com/arashrasti96/scACORN" target="_blank" rel="noreferrer">Source code <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+  </footer>
+
+  <dialog class="lightbox" data-lightbox-dialog aria-label="Expanded paper figure">
+    <div class="lightbox-bar">
+      <p data-lightbox-caption></p>
+      <button class="icon-button icon-button-light" type="button" aria-label="Close expanded figure" data-lightbox-close><i data-lucide="x" aria-hidden="true"></i></button>
+    </div>
+    <div class="lightbox-canvas"><img data-lightbox-image alt=""></div>
+  </dialog>
+</body>
+</html>

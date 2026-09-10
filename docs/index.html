@@ -14,9 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="app.js?v=1" defer></script>
+  <script src="app.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -31,7 +31,8 @@
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="#approach">Approach</a>
       <a href="#results">Results</a>
-      <a href="#benchmark">Benchmark</a>
+      <a href="#table-1">Table 1</a>
+      <a href="#examples">Examples</a>
       <a href="#people">People</a>
     </nav>
     <div class="header-actions">
@@ -49,7 +50,8 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" data-mobile-nav>
       <a href="#approach">Approach</a>
       <a href="#results">Results</a>
-      <a href="#benchmark">Benchmark</a>
+      <a href="#table-1">Table 1</a>
+      <a href="#examples">Examples</a>
       <a href="#people">People</a>
     </nav>
   </header>
@@ -74,20 +76,6 @@
         </div>
         <p class="authors">Arash Rasti-Meymandi, Sepideh Nahali, Eustache Paramithiotis, Angela M. Cheung &amp; Elham Dolatabadi</p>
       </div>
-      <div class="hero-signal" aria-hidden="true">
-        <span>Ranked expression profile</span>
-        <div class="gene-strip">
-          <b style="--level: 96%">CD3D</b><b style="--level: 87%">CD8A</b><b style="--level: 79%">NKG7</b><b style="--level: 68%">CCL5</b><b style="--level: 54%">GZMB</b><b style="--level: 42%">LTB</b>
-        </div>
-      </div>
-    </section>
-
-    <section class="at-a-glance" aria-label="Study at a glance">
-      <div><strong>20</strong><span>adapters trained</span></div>
-      <div><strong>10</strong><span>human tissues</span></div>
-      <div><strong>~170k</strong><span>held-out annotations</span></div>
-      <div><strong>80</strong><span>free-form questions</span></div>
-      <div><strong>12</strong><span>baseline systems</span></div>
     </section>
 
     <section class="intro section" id="approach">
@@ -212,47 +200,112 @@
       </article>
     </section>
 
-    <section class="benchmark section" id="benchmark">
-      <div class="benchmark-heading reveal">
+    <section class="orchestration-table section" id="table-1">
+      <div class="table-heading reveal">
         <div>
-          <p class="section-index">03 &middot; Tissue benchmark</p>
-          <h2>Ten tissues.<br>One shared protocol.</h2>
+          <p class="section-index">03 &middot; Table 1</p>
+          <h2>Textual orchestration performance.</h2>
         </div>
-        <p>Held-out Stage 2 performance for each tissue-specialized expert. Select a metric to compare the tissue profile; the table retains the complete reported results.</p>
+        <p>Performance across orchestrators, question types, and playbook conditions. Values are means across held-out questions; higher is better.</p>
       </div>
 
-      <div class="benchmark-controls reveal" role="group" aria-label="Select chart metric">
-        <button type="button" class="metric-toggle is-active" data-metric="exact" aria-pressed="true">Exact match</button>
-        <button type="button" class="metric-toggle" data-metric="grounding" aria-pressed="false">Evidence grounding</button>
+      <div class="table-layout reveal">
+        <div class="table-context">
+          <span class="table-count">80</span>
+          <p>held-out questions</p>
+          <dl>
+            <div><dt>38</dt><dd>single-expert</dd></div>
+            <div><dt>42</dt><dd>compositional</dd></div>
+          </dl>
+        </div>
+        <figure class="paper-table">
+          <div class="table-wrap" tabindex="0" aria-label="Textual orchestration performance results">
+            <table>
+              <thead>
+                <tr><th>Category</th><th>Model</th><th>Ontology <span>&uarr;</span></th><th>Evidence align. <span>&uarr;</span></th><th>Marker cov. <span>&uarr;</span></th><th>Nuanced <span>&uarr;</span></th></tr>
+              </thead>
+              <tbody>
+                <tr class="panel-row"><th colspan="6"><span>a</span> Single-expert questions <small>n = 38</small></th></tr>
+                <tr><td rowspan="3">Open-source</td><td>Mistral-Small-3.2-24B-Instruct</td><td>0.593</td><td>0.311</td><td>0.506</td><td>0.435</td></tr>
+                <tr><td>Qwen3-14B</td><td>0.460</td><td>0.200</td><td>0.342</td><td>0.371</td></tr>
+                <tr><td>Llama-3.1-8B-Instruct</td><td>0.216</td><td>0.135</td><td>0.296</td><td>0.273</td></tr>
+                <tr><td rowspan="2">Closed-source</td><td>GPT-4o-mini</td><td>0.480</td><td>0.308</td><td>0.388</td><td>0.400</td></tr>
+                <tr><td>GPT-5</td><td>0.633</td><td>0.290</td><td>0.865</td><td>0.486</td></tr>
+                <tr><td rowspan="5">Specialized</td><td>Cell-o1</td><td>0.411</td><td>0.259</td><td>0.556</td><td>0.476</td></tr>
+                <tr><td>scACORN <small>GPT-5.4-mini; empty</small></td><td>0.780</td><td>0.537</td><td>0.902</td><td>0.699</td></tr>
+                <tr class="scacorn-row"><td>scACORN <small>GPT-5.4-mini; optimized</small></td><td>0.832</td><td>0.632</td><td>0.904</td><td>0.747</td></tr>
+                <tr><td>scACORN <small>Claude Sonnet 4.5; empty</small></td><td>0.751</td><td>0.543</td><td>0.914</td><td>0.709</td></tr>
+                <tr class="best-row"><td>scACORN <small>Claude Sonnet 4.5; optimized</small></td><td><strong>0.841</strong></td><td><strong>0.678</strong></td><td><strong>0.922</strong></td><td><strong>0.753</strong></td></tr>
+                <tr class="panel-row"><th colspan="6"><span>b</span> Compositional questions <small>n = 42</small></th></tr>
+                <tr><td rowspan="3">Open-source</td><td>Mistral-Small-3.2-24B-Instruct</td><td>0.491</td><td>0.301</td><td>0.461</td><td>0.377</td></tr>
+                <tr><td>Qwen3-14B</td><td>0.569</td><td>0.193</td><td>0.375</td><td>0.381</td></tr>
+                <tr><td>Llama-3.1-8B-Instruct</td><td>0.338</td><td>0.113</td><td>0.209</td><td>0.280</td></tr>
+                <tr><td rowspan="2">Closed-source</td><td>GPT-4o-mini</td><td>0.543</td><td>0.257</td><td>0.334</td><td>0.384</td></tr>
+                <tr><td>GPT-5</td><td>0.773</td><td>0.364</td><td>0.807</td><td>0.520</td></tr>
+                <tr><td rowspan="5">Specialized</td><td>Cell-o1</td><td>0.499</td><td>0.305</td><td>0.544</td><td>0.482</td></tr>
+                <tr><td>scACORN <small>GPT-5.4-mini; empty</small></td><td>0.614</td><td>0.019</td><td>0.793</td><td>0.513</td></tr>
+                <tr class="scacorn-row"><td>scACORN <small>GPT-5.4-mini; optimized</small></td><td>0.853</td><td>0.508</td><td>0.702</td><td>0.741</td></tr>
+                <tr><td>scACORN <small>Claude Sonnet 4.5; empty</small></td><td>0.622</td><td>0.139</td><td><strong>0.808</strong></td><td>0.553</td></tr>
+                <tr class="best-row"><td>scACORN <small>Claude Sonnet 4.5; optimized</small></td><td><strong>0.858</strong></td><td><strong>0.535</strong></td><td>0.716</td><td><strong>0.744</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <figcaption><span>Table 1</span> Textual orchestration performance across orchestrators, question types and playbook conditions. Evidence alignment is weighted set-F1 agreement; marker coverage is weighted recall of reference supporting and negative markers.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="examples section" id="examples">
+      <div class="examples-heading reveal">
+        <div>
+          <p class="section-index">04 &middot; Qualitative interactions</p>
+          <h2>From ranked genes to biological reasoning.</h2>
+        </div>
+        <p>Held-out examples from the paper appendix. Ranked-gene lists are omitted here, as in the manuscript, to focus on the question, scACORN response, and reference answer.</p>
       </div>
 
-      <div class="benchmark-layout reveal">
-        <div class="tissue-chart" data-tissue-chart aria-label="Tissue benchmark bar chart"></div>
-        <div class="table-wrap" tabindex="0" aria-label="Scrollable tissue benchmark results">
-          <table>
-            <thead>
-              <tr><th>Tissue</th><th>N test</th><th>Exact</th><th>Grounding</th><th>Latency</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Bladder</td><td>1,532</td><td>0.990</td><td>0.910</td><td>11.61 s</td></tr>
-              <tr><td>Ear</td><td>1,693</td><td>0.960</td><td>0.910</td><td>10.67 s</td></tr>
-              <tr><td>Eye</td><td>894</td><td>0.802</td><td>0.693</td><td>11.17 s</td></tr>
-              <tr><td>Heart</td><td>656</td><td>0.956</td><td>0.899</td><td>10.67 s</td></tr>
-              <tr><td>Ovary</td><td>1,768</td><td>0.950</td><td>0.895</td><td>11.49 s</td></tr>
-              <tr><td>Pancreas</td><td>1,449</td><td>0.937</td><td>0.757</td><td>11.50 s</td></tr>
-              <tr><td>Prostate</td><td>916</td><td>0.912</td><td>0.759</td><td>11.47 s</td></tr>
-              <tr><td>Salivary gland</td><td>657</td><td>0.760</td><td>0.483</td><td>12.05 s</td></tr>
-              <tr><td>Small intestine</td><td>637</td><td>0.719</td><td>0.920</td><td>11.47 s</td></tr>
-              <tr><td>Spleen</td><td>2,859</td><td>0.942</td><td>0.923</td><td>11.56 s</td></tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="conversation-list">
+        <details class="conversation reveal" open>
+          <summary><span>High agreement &middot; Single cell</span><strong>Endothelial versus mesenchymal identity</strong><i data-lucide="plus" aria-hidden="true"></i></summary>
+          <div class="conversation-body">
+            <div class="message message-user"><span>User</span><p>I pasted a ranked gene list above and I am not sure what cell type this profile represents. Could you suggest the most likely cell identity and point to which markers in the list support that assignment? I am trying to decide between an endothelial versus a mesenchymal or smooth-muscle interpretation.</p></div>
+            <div class="message message-agent"><span>scACORN</span><p>Most likely identity: cardiac endothelial cell (predicted tissue: heart). This assignment is supported by endothelial markers present in the ranked list, including VWF, ENG, and EMCN. Mesenchymal and smooth-muscle alternatives are weakened by the absence of COL1A1, DCN, ACTA2, and TAGLN from the ranked profile. Confidence: high. Plausible alternative labels include generic endothelial cell, vascular endothelial cell, capillary endothelial cell, and vein endothelial cell.</p></div>
+            <div class="message message-reference"><span>Reference answer</span><p>Most likely cell identity: cardiac endothelial cell. This assignment is supported by VWF and EMCN being present in the ranked genes, with ENG further reinforcing an endothelial signature. The lack of COL1A1 provides little support for a fibroblast interpretation.</p></div>
+          </div>
+        </details>
+
+        <details class="conversation reveal">
+          <summary><span>High agreement &middot; Multi-cell</span><strong>Immune versus myeloid profiles</strong><i data-lucide="plus" aria-hidden="true"></i></summary>
+          <div class="conversation-body">
+            <div class="message message-user"><span>User</span><p>I pasted two ranked gene lists above corresponding to profile IDs A and B. For each profile ID, provide a single best cell-type annotation with a confidence level and short rationale, and explicitly list the supporting evidence and negative markers used from each list.</p></div>
+            <div class="message message-agent"><span>scACORN</span><p><strong>Profile A:</strong> naive thymus-derived CD4-positive, alpha-beta T cell (confidence: high). The ranked list contains IL7R and LTB, which support a naive CD4 T-cell interpretation, while effector and activation alternatives are weakened by the absence of GZMB, IFNG, IL4, and IL5.</p><p><strong>Profile B:</strong> mononuclear phagocyte (confidence: moderate). Antigen presentation markers including CD74, HLA-DRA, HLA-DRB1, and CST3 support an antigen-presenting mononuclear phagocyte state. B-cell and activated T-cell alternatives are weakened by the absence of canonical lymphoid and cytotoxic markers.</p></div>
+            <div class="message message-reference"><span>Reference answer</span><p><strong>Profile A:</strong> naive thymus-derived CD4-positive, alpha-beta T cell, high confidence. IL7R and LTB are present, while canonical effector or activation markers including IFNG, IL4, IL5, and GZMB are not detected among the top-ranked genes.</p><p><strong>Profile B:</strong> mononuclear phagocyte, high confidence. AIF1, TYROBP, and FCER1G appear in the ranked list, while lymphoid and endothelial markers including CD3D, MS4A1, PECAM1, and EPCAM are absent or low.</p></div>
+          </div>
+        </details>
+
+        <details class="conversation reveal">
+          <summary><span>Biologically distinctive &middot; Single cell</span><strong>Retinal cell identity</strong><i data-lucide="plus" aria-hidden="true"></i></summary>
+          <div class="conversation-body">
+            <div class="message message-user"><span>User</span><p>I pasted a ranked gene list from a cluster above. Can you give the most likely cell identity and one or two plausible alternative annotations, with a brief explanation of the evidence?</p></div>
+            <div class="message message-agent"><span>scACORN</span><p>Most likely identity: eye photoreceptor cell (predicted tissue: eye). This assignment is supported by neuronal genes SNAP25 and MAP2 in the ranked list. S100B, TMEM119, and COL1A1 are absent, weakening glial and fibroblast interpretations. Plausible alternatives include a generic retinal neuron or retinal bipolar neuron. Confidence: moderate because the detected neuronal genes are not fully photoreceptor specific.</p></div>
+            <div class="message message-reference"><span>Reference answer</span><p>Most likely identity: eye photoreceptor cell. MAP2 and SNAP25 support a neuronal retinal identity. The absence of glial or stromal markers such as S100B and COL1A1 argues against a glial or fibroblast interpretation. Plausible alternatives include other retinal neurons such as bipolar or amacrine cells because MAP2 and SNAP25 are neuronal but not fully photoreceptor specific.</p></div>
+          </div>
+        </details>
+
+        <details class="conversation reveal">
+          <summary><span>Biologically distinctive &middot; Multi-cell</span><strong>Epithelial versus perivascular profiles</strong><i data-lucide="plus" aria-hidden="true"></i></summary>
+          <div class="conversation-body">
+            <div class="message message-user"><span>User</span><p>I pasted two ranked gene lists above for profiles A and B. Could you annotate each profile and determine whether they represent related states within one lineage or clearly distinct cell identities?</p></div>
+            <div class="message message-agent"><span>scACORN</span><p><strong>Profile A:</strong> enterocyte of the epithelium proper of the ileum. The ranked genes include APOA1, APOA4, SLC5A1, FABP2, and ANPEP, supporting an absorptive ileal enterocyte identity. Confidence: high.</p><p><strong>Profile B:</strong> pericyte. The ranked genes include RGS5, NOTCH3, SPARC, IGFBP7, and CALD1, supporting a perivascular mesenchymal identity. Confidence: moderate.</p><p>The two profiles represent clearly distinct cell identities rather than related states within one lineage.</p></div>
+            <div class="message message-reference"><span>Reference answer</span><p><strong>Profile A:</strong> enterocyte of the epithelium proper of the ileum. APOA1, APOA4, and SLC5A1 support an absorptive enterocyte identity, whereas MUC2 and CHGA are not enriched and argue against goblet or enteroendocrine interpretations.</p><p><strong>Profile B:</strong> pericyte. RGS5, NOTCH3, and COL4A1 support a pericyte or perivascular program, whereas PECAM1 and VWF are not enriched and argue against an endothelial identity.</p><p>The two profiles are clearly distinct cell identities rather than related states of one lineage.</p></div>
+          </div>
+        </details>
       </div>
     </section>
 
     <section class="paper-summary section">
       <div class="summary-label reveal">
-        <p class="section-index">04 &middot; Abstract</p>
+        <p class="section-index">05 &middot; Abstract</p>
         <div class="summary-mark" aria-hidden="true"><i data-lucide="quote"></i></div>
       </div>
       <div class="abstract reveal">
@@ -264,7 +317,7 @@
 
     <section class="resources section" id="people">
       <div class="resource-main reveal">
-        <p class="section-index">05 &middot; Paper &amp; code</p>
+        <p class="section-index">06 &middot; Paper &amp; code</p>
         <h2>Reproduce the workflow.</h2>
         <p>The public repository includes domain alignment, expert specialization, textual orchestration, benchmark evaluation, dataset preparation, and manuscript figure generation.</p>
         <div class="resource-actions">

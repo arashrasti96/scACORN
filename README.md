@@ -2,7 +2,7 @@
 
 Code for **Agentic Context Engineering with Specialized Small Language Models for Single-Cell Reasoning**.
 
-Visit   [`https://arashrasti96.github.io/scACORN/`](https://arashrasti96.github.io/scACORN/) for 
+Visit [`https://arashrasti96.github.io/scACORN/`](https://arashrasti96.github.io/scACORN/) for visualization.
 
 scACORN builds reusable single-cell experts in three stages:
 
